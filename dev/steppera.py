@@ -334,13 +334,27 @@ try:
     time.sleep(2)
 
     if (stepperInUse[STEPPERA] == True):
-        sensor_value = "200"
+        sensor_value = "128"
         if isNumeric(sensor_value):
-            print "turning" , sensor_value
-            steppera.changeSpeed(int(100 * sign(int(float(sensor_value)) - turnAStep)),abs(int(float(sensor_value)) - turnAStep))
+            print "Moving to" , sensor_value
+            steppera.changeSpeed(int(100 * sign(int(float(sensor_value)) - turnAStep)),abs(int(float(sensor_value)) - 0))
             turnAStep = int(float(sensor_value))
+            print turnAStep
 
+    print turnAStep
+    while (steppera.IsTurning() == True):
+        print steppera.IsTurning()
+        time.sleep(0.5)
+        
+    if (stepperInUse[STEPPERA] == True):
+        sensor_value = "-128"
+        if isNumeric(sensor_value):
+            print "Moving to" , sensor_value
+            steppera.changeSpeed(int(100 * sign(int(float(sensor_value)) - turnAStep)),abs(int(float(sensor_value)) - 0))
+            turnAStep = int(float(sensor_value))
+            print turnAStep
 
+    print turnAStep
     while (steppera.IsTurning() == True):
         print steppera.IsTurning()
         time.sleep(0.5)
