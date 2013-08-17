@@ -11,10 +11,6 @@ import cv2.cv as cv
 from optparse import OptionParser
 
 # This code is copyright Simon Walters under GPL v2
-# This code is derived from Pi-Face scratch_handler by Thomas Preston
-# This code now hosted on Github thanks to Ben Nuttall
-Version =  2.82 # 10Aug13
-
 
 
 from array import *
@@ -350,8 +346,7 @@ haar_flags = 0
 def detect_and_draw(img, cascade):
     # allocate temporary images
     gray = cv.CreateImage((img.width,img.height), 8, 1)
-    small_img = cv.CreateImage((cv.Round(img.width / image_scale),
-			       cv.Round (img.height / image_scale)), 8, 1)
+    small_img = cv.CloneMat(img)# cv.CreateImage((img.width,img.height)) # (cv.Round(img.width / image_scale),cv.Round (img.height / image_scale)), 8, 1)
 
     # convert color input image to grayscale
     cv.CvtColor(img, gray, cv.CV_BGR2GRAY)
